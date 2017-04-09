@@ -23,6 +23,10 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 (setq multi-term-program "/bin/zsh")
+;;bind cmd to meta on mac:
+(setq ns-command-modifier 'meta)
+;;bind meta to cmd on mac:
+(setq ns-alternate-modifier 'super)
 
 
 (put 'upcase-region 'disabled nil)
