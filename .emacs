@@ -44,6 +44,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq-default column-number-mode 1)
 (delete-selection-mode 1)
 
+(require 'multi-scratch)
 (require 'package)
 (require 'multi-term)
 (custom-set-variables
