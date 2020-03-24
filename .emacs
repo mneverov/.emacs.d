@@ -23,10 +23,16 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 (setq multi-term-program "/bin/zsh")
-;;bind cmd to meta on mac:
+;; bind cmd to meta on mac:
 (setq ns-command-modifier 'meta)
-;;bind meta to cmd on mac:
+;; bind meta to cmd on mac:
 (setq ns-alternate-modifier 'super)
+;; enable the display of time in the modeline
+(display-time-mode 1)
+;; show time hh:mm dd/mm
+(setq display-time-format "%H:%M %d/%m")
+;; do not display system load average
+(setq display-time-default-load-average nil)
 
 
 (put 'upcase-region 'disabled nil)
@@ -73,11 +79,10 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (add-hook 'term-mode-hook (lambda ()
                             (define-key term-raw-map (kbd "C-y") 'term-paste)))
 
-
-
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+
  )
