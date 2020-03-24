@@ -33,6 +33,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq display-time-format "%H:%M %d/%m")
 ;; do not display system load average
 (setq display-time-default-load-average nil)
+;; do not show toolbar
+(tool-bar-mode -1)
 
 
 (put 'upcase-region 'disabled nil)
