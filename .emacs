@@ -40,6 +40,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
+;; disable ctrl-z minimize emacs
+(global-unset-key (kbd "C-z"))
+
 (global-hl-line-mode 1)
 (setq-default column-number-mode 1)
 (delete-selection-mode 1)
