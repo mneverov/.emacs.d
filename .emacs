@@ -35,6 +35,10 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq display-time-default-load-average nil)
 ;; do not show toolbar
 (tool-bar-mode -1)
+;; ignore case on file name completion
+(setq read-file-name-completion-ignore-case 1)
+;; ignore case on buffer completion
+(setq read-buffer-completion-ignore-case 1)
 
 
 (put 'upcase-region 'disabled nil)
@@ -86,5 +90,4 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-
- )
+)
