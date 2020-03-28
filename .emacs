@@ -8,10 +8,8 @@
 (package-initialize)
 
 (defun set-exec-path-from-shell-PATH ()
-  "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
-
-This is particularly useful under Mac OSX, where GUI apps are not started from a shell.
-(http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does-not-find-executable)"
+  "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell (for Mac).
+  (http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does-not-find-executable)"
   (interactive)
   (let ((path-from-shell (replace-regexp-in-string "[ \t\n]*$" "" (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
     (setenv "PATH" path-from-shell)
@@ -20,7 +18,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq-default indent-tabs-mode nil)
 (setq-default cursor-type 'bar)
 (setq-default blink-cursor-blinks 0)
+;; show matching parenthesis
 (show-paren-mode 1)
+;; highlight matching parenthesis after 0 sec
 (setq show-paren-delay 0)
 (setq multi-term-program "/bin/zsh")
 ;; bind cmd to meta on mac:
@@ -39,7 +39,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq read-file-name-completion-ignore-case 1)
 ;; ignore case on buffer completion
 (setq read-buffer-completion-ignore-case 1)
-
+;; calendar start day monday
+(setq calendar-week-start-day 1)
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
