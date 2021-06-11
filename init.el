@@ -123,7 +123,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
+ '(custom-enabled-themes (quote (mneverov)))
+ '(custom-safe-themes
+   (quote
+    ("e0dd51fcda6a7462f86eca3bddca85cb4472eb5fd0acb6090dff21c9a9a62a7a" default)))
  '(initial-frame-alist (quote ((fullscreen . maximized))))
+ '(lsp-enable-snippet nil)
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
