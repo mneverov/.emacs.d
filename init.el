@@ -1,13 +1,9 @@
+(require 'package)
+;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+;; and `package-pinned-packages`. Most users will not need or want to do this.
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
-
-;; load emacs 24's package system. Add MELPA repository
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list
-   'package-archives
-   ;; '("melpa" . "http://stable.melpa.org/packages/") ; many packages won't show if using stable
-   '("melpa" . "http://melpa.milkbox.net/packages/")
-   t))
 
 ;; refresh package list if it is not already available
 (when (not package-archive-contents) (package-refresh-contents))
@@ -95,7 +91,6 @@
 
 ;; plugins
 (require 'multi-scratch)
-(require 'package)
 (require 'multi-term)
 
 ;; https://www.emacswiki.org/emacs/InteractivelyDoThings
@@ -159,14 +154,6 @@
             (setq company-tooltip-align-annotations t)
             ;; loop through suggestions
             (setq company-selection-wrap-around t)))
-
-;; hookup company to lsp-mode
-(use-package company-lsp
-  :ensure t
-  :commands company-lsp)
-(use-package go-mode
-  :ensure t
-  :hook ((go-mode . lsp-deferred)))
 
 (global-set-key (kbd "M-SPC") 'company-manual-begin)
 (global-set-key (kbd "M-SPC") 'company-complete-common)
