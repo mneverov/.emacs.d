@@ -132,33 +132,21 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages (quote (company-lsp company lsp-mode go-mode haskell-mode))))
 
+;; do not yank ever
+(global-set-key "\C-w" 'backward-delete-word)
+(global-set-key (kbd "M-d") 'delete-word)
 
-(use-package lsp-mode
-  :ensure t
-  :custom (
-           ;; suppress warning about not having yasnippet mode installed
-           (lsp-enable-snippet nil)
-           ;; uncomment to enable gopls http debug server
-           ;; (lsp-gopls-server-args '("-debug" "127.0.0.1:0"))
-           )
-  :commands (lsp lsp-deferred))
+(defun delete-word (arg)
+  "Delete characters forward until encountering the end of a word.
+With argument ARG, do this that many times."
+  (interactive "p")
+  (delete-region (point) (progn (forward-word arg) (point))))
 
-;; Company mode is a standard completion package that works well with lsp-mode.
-;; http://company-mode.github.io/
-(use-package company
-  :ensure t
-  :config (progn
-            ;; no autocomplete, only by typing M-SPC
-            (setq company-idle-delay nil)
-            ;; align fields in completions
-            (setq company-tooltip-align-annotations t)
-            ;; loop through suggestions
-            (setq company-selection-wrap-around t)))
-
-(global-set-key (kbd "M-SPC") 'company-manual-begin)
-(global-set-key (kbd "M-SPC") 'company-complete-common)
-(global-set-key (kbd "M-SPC") 'company-complete)
-(global-set-key (kbd "M-SPC") 'company-select-next)
+(defun backward-delete-word (arg)
+  "Delete characters backward until encountering the beginning of a word.
+With argument ARG, do this that many times."
+  (interactive "p")
+  (delete-word (- arg)))
 
 
 (global-set-key (kbd "C->") (
