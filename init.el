@@ -31,6 +31,7 @@
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
+(setq ring-bell-function 'ignore)
 ;; do not show startup screen
 (setq inhibit-startup-message t)
 (setq-default indent-tabs-mode nil)
@@ -74,7 +75,6 @@
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 (global-set-key "\C-w" 'backward-kill-word)
-(global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 (global-set-key (kbd "M-1") 'sr-speedbar-toggle)
 (global-set-key (kbd "M-j") 'bs-show)
