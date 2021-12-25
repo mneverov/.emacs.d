@@ -91,31 +91,6 @@
 (setq-default column-number-mode 1)
 (delete-selection-mode 1)
 
-;; plugins
-;; TODO: do I need any of these?
-;;(require 'multi-scratch)
-;;(require 'multi-term)
-
-;; https://www.emacswiki.org/emacs/InteractivelyDoThings
-(require 'ido)
-(ido-mode t)
-(setq ido-enable-flex-matching t)
-
-;; buffer selection
-;; https://www.emacswiki.org/emacs/BufferSelection
-;; https://github.com/emacs-mirror/emacs/blob/master/lisp/bs.el
-(require 'bs)
-(setq bs-configurations
-      '(("files" "^\\*scratch\\*" nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)))
-
-;; use SrSpeedbar https://www.emacswiki.org/emacs/SrSpeedbar instead of standard
-;; speedbar because the latter opens in a different frame.
-(require 'sr-speedbar)
-;; show hidden files
-(setq speedbar-directory-unshown-regexp "^$")
-
-(eval-after-load 'dired '(require 'setup-dired))
-
 ;; do not yank ever
 (global-set-key "\C-w" 'backward-delete-word)
 (global-set-key (kbd "M-d") 'delete-word)
@@ -140,7 +115,6 @@ deletes the selection."
       (delete-region (region-beginning) (region-end))
     (delete-region (point) (line-end-position))))
 
-
 (global-set-key (kbd "C->") (
         lambda() (interactive) (next-line) (recenter-top-bottom '(middle))))
 
@@ -150,6 +124,31 @@ deletes the selection."
 ;; By default yanking into the term doesn't work. The following allows to yank into the terminal
 (add-hook 'term-mode-hook (lambda ()
                             (define-key term-raw-map (kbd "C-y") 'term-paste)))
+
+;; plugins
+;; TODO: do I need any of these?
+;;(require 'multi-scratch)
+;;(require 'multi-term)
+
+;; https://www.emacswiki.org/emacs/InteractivelyDoThings
+(require 'ido)
+(ido-mode t)
+(setq ido-enable-flex-matching t)
+
+;; buffer selection
+;; https://www.emacswiki.org/emacs/BufferSelection
+;; https://github.com/emacs-mirror/emacs/blob/master/lisp/bs.el
+(require 'bs)
+(setq bs-configurations
+      '(("files" "^\\*scratch\\*" nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)))
+
+;; use SrSpeedbar https://www.emacswiki.org/emacs/SrSpeedbar instead of standard
+;; speedbar because the latter opens in a different frame.
+(require 'sr-speedbar)
+;; show hidden files
+(setq speedbar-directory-unshown-regexp "^$")
+
+(eval-after-load 'dired '(require 'setup-dired))
 
 ;; this will search for and load ***-theme.el (light-theme.el) in ~/.config/emacs.
 (load-theme 'light)
