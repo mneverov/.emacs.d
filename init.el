@@ -77,6 +77,7 @@
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-c\C-k" 'kill-region)
+(global-set-key "\C-k" 'delete-eol-or-region)
 (global-set-key (kbd "M-1") 'sr-speedbar-toggle)
 (global-set-key (kbd "M-j") 'bs-show)
 (global-set-key (kbd "C-z") 'undo)
@@ -131,6 +132,14 @@ With argument ARG, do this that many times."
   (interactive "p")
   (delete-word (- arg)))
 
+(defun delete-eol-or-region ()
+  "Deletes from the caret position until the end of the current line or
+deletes the selection."
+  (interactive)
+  (if (use-region-p)
+      (delete-region (region-beginning) (region-end))
+    (delete-region (point) (line-end-position))))
+
 
 (global-set-key (kbd "C->") (
         lambda() (interactive) (next-line) (recenter-top-bottom '(middle))))
@@ -151,7 +160,7 @@ With argument ARG, do this that many times."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("17adbcb90b1478ea5deef7c659ea4f7d9e6a120f5422fef074d95c938c088f21" "2e76c530f8939d8e269c1f3fcb1c1c4c8e4d15ebd153799b3dba4ab7ae3c1d57" "194ec31c4450ddc1d5e0490dc1eeda783ac5312542a76cdc065381e480eebbe7" "944f86bc721b184a46de9efaa81b4963d95ff77214466570bf9e757d997dd3dc" default)))
+   '("0eb866723f81a3a28159505da2616086722328abc7ef118bfc8778f1667964e5" "17adbcb90b1478ea5deef7c659ea4f7d9e6a120f5422fef074d95c938c088f21" "2e76c530f8939d8e269c1f3fcb1c1c4c8e4d15ebd153799b3dba4ab7ae3c1d57" "194ec31c4450ddc1d5e0490dc1eeda783ac5312542a76cdc065381e480eebbe7" "944f86bc721b184a46de9efaa81b4963d95ff77214466570bf9e757d997dd3dc" default)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
