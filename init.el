@@ -87,10 +87,6 @@
 (global-set-key (kbd "M-<right>") '(lambda () (interactive) (enlarge-window-horizontally 1)))
 (global-set-key (kbd "M-<left>") '(lambda () (interactive) (enlarge-window-horizontally -1)))
 
-(global-hl-line-mode 1)
-(setq-default column-number-mode 1)
-(delete-selection-mode 1)
-
 ;; do not yank ever
 (global-set-key "\C-w" 'backward-delete-word)
 (global-set-key (kbd "M-d") 'delete-word)
@@ -125,6 +121,9 @@ deletes the selection."
 (add-hook 'term-mode-hook (lambda ()
                             (define-key term-raw-map (kbd "C-y") 'term-paste)))
 
+;; check https://github.com/emacs-mirror/emacs/blob/master/lisp/simple.el for
+;; examples from the emacs predefined functions.
+
 ;; plugins
 ;; TODO: do I need any of these?
 ;;(require 'multi-scratch)
@@ -151,7 +150,7 @@ deletes the selection."
 (eval-after-load 'dired '(require 'setup-dired))
 
 ;; this will search for and load ***-theme.el (light-theme.el) in ~/.config/emacs.
-(load-theme 'light)
+(load-theme 'light t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
