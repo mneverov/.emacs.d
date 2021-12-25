@@ -12,15 +12,15 @@
   (package-install 'use-package))
 
 ;; dependencies
-(setq lisp-dir
-      (expand-file-name "lisp" user-emacs-directory))
+(setq site-dir
+      (expand-file-name "site" user-emacs-directory))
 
 (setq settings-dir
       (expand-file-name "settings" user-emacs-directory))
 
 ;; load customizations
 (add-to-list 'load-path settings-dir)
-(add-to-list 'load-path lisp-dir)
+(add-to-list 'load-path site-dir)
 
 (defun set-exec-path-from-shell-PATH ()
   "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
@@ -107,12 +107,11 @@
 (setq bs-configurations
       '(("files" "^\\*scratch\\*" nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)))
 
-;; speedbar https://www.emacswiki.org/emacs/SpeedBar
-;; (require 'sr-speedbar)
+;; use SrSpeedbar https://www.emacswiki.org/emacs/SrSpeedbar instead of standard
+;; speedbar because the latter opens in a different frame.
+(require 'sr-speedbar)
 ;; show hidden files
-;; (setq speedbar-directory-unshown-regexp "^$")
-
-;; (speedbar 1)
+(setq speedbar-directory-unshown-regexp "^$")
 
 (eval-after-load 'dired '(require 'setup-dired))
 
@@ -143,7 +142,7 @@ With argument ARG, do this that many times."
 (add-hook 'term-mode-hook (lambda ()
                             (define-key term-raw-map (kbd "C-y") 'term-paste)))
 
-
+;; this will search for and load ***-theme.el (light-theme.el) in ~/.config/emacs.
 (load-theme 'light)
 
 (custom-set-variables
@@ -152,7 +151,7 @@ With argument ARG, do this that many times."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("194ec31c4450ddc1d5e0490dc1eeda783ac5312542a76cdc065381e480eebbe7" "944f86bc721b184a46de9efaa81b4963d95ff77214466570bf9e757d997dd3dc" default)))
+   '("17adbcb90b1478ea5deef7c659ea4f7d9e6a120f5422fef074d95c938c088f21" "2e76c530f8939d8e269c1f3fcb1c1c4c8e4d15ebd153799b3dba4ab7ae3c1d57" "194ec31c4450ddc1d5e0490dc1eeda783ac5312542a76cdc065381e480eebbe7" "944f86bc721b184a46de9efaa81b4963d95ff77214466570bf9e757d997dd3dc" default)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
