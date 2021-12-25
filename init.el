@@ -3,7 +3,6 @@
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
 
 ;; refresh package list if it is not already available
 (when (not package-archive-contents) (package-refresh-contents))
@@ -66,6 +65,8 @@
 (setq auto-save-list-file-name nil)
 ;; no auto save
 (setq auto-save-default nil)
+;; no confirmation on exit when modified buffers exist
+(setq confirm-kill-emacs 'y-or-n-p)
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -90,8 +91,9 @@
 (delete-selection-mode 1)
 
 ;; plugins
-(require 'multi-scratch)
-(require 'multi-term)
+;; TODO: do I need any of these?
+;;(require 'multi-scratch)
+;;(require 'multi-term)
 
 ;; https://www.emacswiki.org/emacs/InteractivelyDoThings
 (require 'ido)
@@ -106,31 +108,13 @@
       '(("files" "^\\*scratch\\*" nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)))
 
 ;; speedbar https://www.emacswiki.org/emacs/SpeedBar
-(require 'sr-speedbar)
-;; show hidden filesl
-(setq speedbar-directory-unshown-regexp "^$")
+;; (require 'sr-speedbar)
+;; show hidden files
+;; (setq speedbar-directory-unshown-regexp "^$")
+
+;; (speedbar 1)
 
 (eval-after-load 'dired '(require 'setup-dired))
-
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
- '(custom-enabled-themes (quote (mneverov)))
- '(custom-safe-themes
-   (quote
-    ("e0dd51fcda6a7462f86eca3bddca85cb4472eb5fd0acb6090dff21c9a9a62a7a" default)))
- '(initial-frame-alist (quote ((fullscreen . maximized))))
- '(lsp-enable-snippet nil)
- '(package-archives
-   (quote
-    (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa-stable" . "http://stable.melpa.org/packages/"))))
- '(package-selected-packages (quote (company-lsp company lsp-mode go-mode haskell-mode))))
 
 ;; do not yank ever
 (global-set-key "\C-w" 'backward-delete-word)
@@ -160,6 +144,15 @@ With argument ARG, do this that many times."
                             (define-key term-raw-map (kbd "C-y") 'term-paste)))
 
 
+(load-theme 'light)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("944f86bc721b184a46de9efaa81b4963d95ff77214466570bf9e757d997dd3dc" default)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
