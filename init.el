@@ -152,7 +152,7 @@ With argument ARG, do this that many times."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("944f86bc721b184a46de9efaa81b4963d95ff77214466570bf9e757d997dd3dc" default)))
+   '("194ec31c4450ddc1d5e0490dc1eeda783ac5312542a76cdc065381e480eebbe7" "944f86bc721b184a46de9efaa81b4963d95ff77214466570bf9e757d997dd3dc" default)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

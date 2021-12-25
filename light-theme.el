@@ -18,7 +18,8 @@
 
 (custom-theme-set-faces
  'light
- '(hl-line             ((t (:background "#FCFAED"))))
+ '(hl-line      ((t (:background "#FCFAED"))))
+ '(region       ((t (:background "#7392F3" :foreground "#ffffff"))))
  ;; '(hl-line ((t (:inherit highlight :background "#FCFAED"))))
  )
 
