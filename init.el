@@ -108,9 +108,9 @@ With argument ARG, do this that many times."
   "Deletes from the caret position until the end of the current line or
 deletes the selection."
   (interactive)
-  (if (use-region-p)
-      (delete-region (region-beginning) (region-end))
-    (delete-region (point) (line-end-position))))
+   (cond ((use-region-p) (delete-region (region-beginning) (region-end))) ;; if there is a region delete it
+         ((eolp)         (delete-char 1))                                 ;; if it is the end of the line - delete \n so the next line is moved to the current line
+         (t              (delete-region (point) (line-end-position)))))   ;; delete from the current point to the end of the line
 
 (global-set-key (kbd "C->") (
         lambda() (interactive) (next-line) (recenter-top-bottom '(middle))))
