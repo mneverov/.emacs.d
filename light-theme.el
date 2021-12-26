@@ -18,7 +18,9 @@
  ;; display the current column number
  '(column-number-mode 1)
  ;; show line numbers
- '(global-display-line-numbers-mode 1))
+ '(global-display-line-numbers-mode 1)
+ ;; search everywhere
+ '(apropos-do-all t))
 
 (custom-theme-set-faces
  'light

@@ -81,6 +81,7 @@
 (global-set-key (kbd "M-1") 'sr-speedbar-toggle)
 (global-set-key (kbd "M-j") 'bs-show)
 (global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "\C-h a") 'apropos)
 
 (global-set-key (kbd "M-<up>") '(lambda () (interactive) (enlarge-window 1)))
 (global-set-key (kbd "M-<down>") '(lambda () (interactive) (enlarge-window -1)))
