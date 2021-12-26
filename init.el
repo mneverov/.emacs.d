@@ -71,17 +71,17 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-(global-unset-key (kbd "M-l"))
 (global-set-key (kbd "M-l") 'next-multiframe-window)
-(global-set-key "\C-x\C-m" 'execute-extended-command)
-(global-set-key "\C-c\C-m" 'execute-extended-command)
-(global-set-key "\C-w" 'backward-kill-word)
-(global-set-key "\C-c\C-k" 'kill-region)
-(global-set-key "\C-k" 'delete-eol-or-region)
+(global-set-key (kbd "C-x C-m") 'execute-extended-command)
+(global-set-key (kbd "C-c C-m") 'execute-extended-command)
+(global-set-key (kbd "C-c C-k") 'kill-region)
+(global-set-key (kbd "C-k") 'delete-eol-or-region)
 (global-set-key (kbd "M-1") 'sr-speedbar-toggle)
 (global-set-key (kbd "M-j") 'bs-show)
 (global-set-key (kbd "C-z") 'undo)
-(global-set-key (kbd "\C-h a") 'apropos)
+(global-set-key (kbd "C-h a") 'apropos)
+(global-set-key (kbd "M-[") 'backward-up-list)
+(global-set-key (kbd "M-]") 'down-list)
 
 (global-set-key (kbd "M-<up>") '(lambda () (interactive) (enlarge-window 1)))
 (global-set-key (kbd "M-<down>") '(lambda () (interactive) (enlarge-window -1)))
@@ -89,8 +89,14 @@
 (global-set-key (kbd "M-<left>") '(lambda () (interactive) (enlarge-window-horizontally -1)))
 
 ;; do not yank ever
-(global-set-key "\C-w" 'backward-delete-word)
+(global-set-key (kbd "C-w") 'backward-delete-word)
 (global-set-key (kbd "M-d") 'delete-word)
+
+(global-set-key (kbd "C->") (
+        lambda() (interactive) (next-line) (recenter-top-bottom '(middle))))
+
+(global-set-key (kbd "C-<") (
+        lambda() (interactive) (previous-line) (recenter-top-bottom '(middle))))
 
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.
@@ -112,22 +118,12 @@ deletes the selection."
          ((eolp)         (delete-char 1))                                 ;; if it is the end of the line - delete \n so the next line is moved to the current line
          (t              (delete-region (point) (line-end-position)))))   ;; delete from the current point to the end of the line
 
-(global-set-key (kbd "C->") (
-        lambda() (interactive) (next-line) (recenter-top-bottom '(middle))))
-
-(global-set-key (kbd "C-<") (
-        lambda() (interactive) (previous-line) (recenter-top-bottom '(middle))))
-
 ;; By default yanking into the term doesn't work. The following allows to yank into the terminal
 (add-hook 'term-mode-hook (lambda ()
                             (define-key term-raw-map (kbd "C-y") 'term-paste)))
 
-;; check https://github.com/emacs-mirror/emacs/blob/master/lisp/simple.el for
-;; examples from the emacs predefined functions.
-
 ;; plugins
-;; TODO: do I need any of these?
-;;(require 'multi-scratch)
+;; TODO: do I need it?
 ;;(require 'multi-term)
 
 ;; https://www.emacswiki.org/emacs/InteractivelyDoThings
