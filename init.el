@@ -53,6 +53,8 @@
 (setq display-time-default-load-average nil)
 ;; do not show toolbar
 (tool-bar-mode -1)
+;; do not show scroll bar
+(scroll-bar-mode -1)
 ;; ignore case on file name completion
 (setq read-file-name-completion-ignore-case 1)
 ;; ignore case on buffer completion
@@ -65,8 +67,14 @@
 (setq auto-save-list-file-name nil)
 ;; no auto save
 (setq auto-save-default nil)
-;; no confirmation on exit when modified buffers exist
-(setq confirm-kill-emacs 'y-or-n-p)
+
+;; y and n instead of yes and no
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; move cursor down a single line at the top, bottom, instead of a half of the page
+(setq-default scroll-step 1)
+(setq-default scroll-conservatively 0)
+(setq-default scroll-margin 2)
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -82,6 +90,8 @@
 (global-set-key (kbd "C-h a") 'apropos)
 (global-set-key (kbd "M-[") 'backward-up-list)
 (global-set-key (kbd "M-]") 'down-list)
+;; disable suspend-frame
+(global-unset-key (kbd "C-x C-z"))
 
 (global-set-key (kbd "M-<up>") '(lambda () (interactive) (enlarge-window 1)))
 (global-set-key (kbd "M-<down>") '(lambda () (interactive) (enlarge-window -1)))
@@ -147,6 +157,7 @@ deletes the selection."
 (eval-after-load 'dired '(require 'setup-dired))
 
 ;; this will search for and load ***-theme.el (light-theme.el) in ~/.config/emacs.
+;; t - do not ask permissions every time.
 (load-theme 'light t)
 
 (custom-set-variables
