@@ -133,8 +133,6 @@ deletes the selection."
                             (define-key term-raw-map (kbd "C-y") 'term-paste)))
 
 ;; plugins
-;; TODO: do I need it?
-;;(require 'multi-term)
 
 ;; https://www.emacswiki.org/emacs/InteractivelyDoThings
 (require 'ido)
