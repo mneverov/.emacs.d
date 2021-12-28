@@ -15,9 +15,6 @@
  ;; highlight the line containing point
  '(global-hl-line-mode t)
 
- ;; show all files, not folders only
- '(speedbar-show-unknown-files t)
-
  ;; delete selected region when typing. By default emacs only inserts a new word
  '(delete-selection-mode t)
 
@@ -46,7 +43,8 @@
  'light
  '(hl-line               ((t (:background "#fcfaed"))))
  '(region                ((t (:background "#7392f3" :foreground "#ffffff"))))
- '(whitespace-space      ((t (:background "#ffffff" :foreground  "#bad3e6"))))
- '(whitespace-tab        ((t (:background "#ffffff" :foreground  "#bad3e6")))))
+ '(whitespace-space      ((t (:background "#ffffff" :foreground "#bad3e6"))))
+ '(whitespace-tab        ((t (:background "#ffffff" :foreground "#bad3e6"))))
+ '(cua-rectangle         ((t (:background "#7392f3" :foreground "#ffffff")))))
 
 (provide-theme 'light)

@@ -22,17 +22,10 @@
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-dir)
 
-(defun set-exec-path-from-shell-PATH ()
-  "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
-   stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does-not-find-executable"
-  (interactive)
-  (let ((path-from-shell (replace-regexp-in-string "[ \t\n]*$" "" (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
-
 (setq ring-bell-function 'ignore)
-;; do not show startup screen
+;; do not show startup screen or scratch message
 (setq inhibit-startup-message t)
+(setq initial-scratch-message nil)
 (setq-default indent-tabs-mode nil)
 (setq-default cursor-type 'bar)
 (setq-default blink-cursor-blinks 0)
@@ -67,6 +60,13 @@
 (setq auto-save-list-file-name nil)
 ;; no auto save
 (setq auto-save-default nil)
+;; show marked text, no region when it is not highlighted
+(setq transient-mark-mode 1)
+
+;; tab settings
+(setq default-tab-width  2)
+;; cutting and pasting uses the clipboard
+(setq x-select-enable-clipboard t)
 
 ;; y and n instead of yes and no
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -92,6 +92,11 @@
 (global-set-key (kbd "M-]") 'down-list)
 ;; disable suspend-frame
 (global-unset-key (kbd "C-x C-z"))
+
+; Stop Emacs from losing undo information by
+; setting very high limits for undo buffers
+(setq undo-limit 20000000)
+(setq undo-strong-limit 40000000)
 
 (global-set-key (kbd "M-<up>") '(lambda () (interactive) (enlarge-window 1)))
 (global-set-key (kbd "M-<down>") '(lambda () (interactive) (enlarge-window -1)))
@@ -128,10 +133,6 @@ deletes the selection."
          ((eolp)         (delete-char 1))                                 ;; if it is the end of the line - delete \n so the next line is moved to the current line
          (t              (delete-region (point) (line-end-position)))))   ;; delete from the current point to the end of the line
 
-;; By default yanking into the term doesn't work. The following allows to yank into the terminal
-(add-hook 'term-mode-hook (lambda ()
-                            (define-key term-raw-map (kbd "C-y") 'term-paste)))
-
 ;; plugins
 
 ;; https://www.emacswiki.org/emacs/InteractivelyDoThings
@@ -149,10 +150,21 @@ deletes the selection."
 ;; use SrSpeedbar https://www.emacswiki.org/emacs/SrSpeedbar instead of standard
 ;; speedbar because the latter opens in a different frame.
 (require 'sr-speedbar)
+;; show all files, not folders only
+(setq speedbar-show-unknown-files t)
 ;; show hidden files
 (setq speedbar-directory-unshown-regexp "^$")
 
 (eval-after-load 'dired '(require 'setup-dired))
+
+;; edit rectangles with C-RET
+(setq cua-highlight-region-shift-only nil) ;no transient mark mode
+(setq cua-toggle-set-mark nil) ;original set-mark behavior, i.e. no transient-mark-mode
+(setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
+(setq cua-selection-mode t)
+;; DOESNT WORK: If non-nil, typed text replaces text in the active selection.
+;; (setq cua-delete-selection t)
+(cua-mode t)
 
 ;; this will search for and load ***-theme.el (light-theme.el) in ~/.config/emacs.
 ;; t - do not ask permissions every time.
