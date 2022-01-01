@@ -4,9 +4,6 @@
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
-;; refresh package list if it is not already available
-(when (not package-archive-contents) (package-refresh-contents))
-
 ;; install use-package if it isn't already installed
 (when (not (package-installed-p 'use-package))
   (package-install 'use-package))
