@@ -158,10 +158,11 @@ deletes the selection."
 (setq cua-highlight-region-shift-only nil) ;no transient mark mode
 (setq cua-toggle-set-mark nil) ;original set-mark behavior, i.e. no transient-mark-mode
 (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
-(setq cua-selection-mode t)
 ;; DOESNT WORK: If non-nil, typed text replaces text in the active selection.
 ;; (setq cua-delete-selection t)
-(cua-mode t)
+;; I don't need cua keybindings, but rectangle selection only
+;; (cua-mode 'emacs)
+(cua-selection-mode t)
 
 ;; this will search for and load ***-theme.el (light-theme.el) in ~/.config/emacs.
 ;; t - do not ask permissions every time.
